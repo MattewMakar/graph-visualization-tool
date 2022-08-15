@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/graph-visualization-tool/static/css/main.4de0fa12.css",
+    "main.js": "/graph-visualization-tool/static/js/main.6223b7d6.js",
+    "index.html": "/graph-visualization-tool/index.html",
+    "main.4de0fa12.css.map": "/graph-visualization-tool/static/css/main.4de0fa12.css.map",
+    "main.6223b7d6.js.map": "/graph-visualization-tool/static/js/main.6223b7d6.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.4de0fa12.css",
+    "static/js/main.6223b7d6.js"
+  ]
+}
