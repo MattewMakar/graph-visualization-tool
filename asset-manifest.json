@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/graph-visualization-tool/static/css/main.4de0fa12.css",
-    "main.js": "/graph-visualization-tool/static/js/main.674e3d72.js",
+    "main.js": "/graph-visualization-tool/static/js/main.8aed4b34.js",
     "index.html": "/graph-visualization-tool/index.html",
     "main.4de0fa12.css.map": "/graph-visualization-tool/static/css/main.4de0fa12.css.map",
-    "main.674e3d72.js.map": "/graph-visualization-tool/static/js/main.674e3d72.js.map"
+    "main.8aed4b34.js.map": "/graph-visualization-tool/static/js/main.8aed4b34.js.map"
   },
   "entrypoints": [
     "static/css/main.4de0fa12.css",
-    "static/js/main.674e3d72.js"
+    "static/js/main.8aed4b34.js"
   ]
 }
