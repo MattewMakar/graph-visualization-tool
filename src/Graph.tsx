@@ -1,6 +1,7 @@
 import React from "react";
 import { ForceGraph2D } from "react-force-graph";
 import { Col } from "reactstrap";
+
 export interface INode {
   id: string;
   val: number;
@@ -10,6 +11,7 @@ export interface INode {
 export interface ILink {
   source: string;
   target: string;
+  curvature?: number;
 }
 export interface Data {
   nodes: Array<INode>;
@@ -29,6 +31,7 @@ const processData = (dr: number[][]): Data => {
       links.push({
         source: `${idx}`,
         target: `${l}`,
+        curvature: idx === l ? .5 : undefined
       });
     });
   });
@@ -36,12 +39,10 @@ const processData = (dr: number[][]): Data => {
 };
 const Graph: React.FC<{ rawData: number[][] }> = ({ rawData }) => {
   const [data, setData] = React.useState<Data>();
-  console.log("TCL: data", data)
   React.useEffect(() => {
     setData(processData(rawData));
   }, [rawData]);
 
-  
   return (
     <Col xs="12">
       <ForceGraph2D
@@ -49,6 +50,8 @@ const Graph: React.FC<{ rawData: number[][] }> = ({ rawData }) => {
         linkDirectionalArrowLength={5}
         nodeVal={5}
         nodeAutoColorBy={"__typename"}
+        enablePointerInteraction={true}
+        linkCurvature="curvature"
         nodeCanvasObject={(node: any, ctx, globalScale) => {
           const label = node.id;
           ctx.textAlign = "center";
@@ -60,6 +63,8 @@ const Graph: React.FC<{ rawData: number[][] }> = ({ rawData }) => {
       />
     </Col>
   );
+
+
 };
 
 export default Graph;
