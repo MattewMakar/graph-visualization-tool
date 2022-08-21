@@ -6,13 +6,21 @@ const DataProcessor: React.FC<{ setRawData: (data: number[][]) => void; setIsLoa
   setIsLoading
 }) => {
   const [hasError, setHasError] = React.useState<boolean>(true);
+  const [timeOuts, setTimeOuts] = React.useState<number[]>([]);
+
+  const delay = (ms: number) => new Promise<number>(
+    resolve => setTimeout(() => {
+      resolve(ms)
+      setIsLoading(false);
+    }, ms)
+  );
   const onChangeFile = async (e: React.ChangeEvent<HTMLInputElement>) => {
     setIsLoading(true);
     const fileReader = new FileReader();
     const fileList = e.target.files;
     if (!fileList?.length) return;
     fileReader.readAsText(fileList[0], "UTF-8");
-    fileReader.onload = (e) => {
+    fileReader.onload = async (e) => {
       const input = JSON.parse(`${e.target?.result}`);
       if (input instanceof Array<number[]>) {
         setRawData(input as number[][]);
@@ -27,9 +35,14 @@ const DataProcessor: React.FC<{ setRawData: (data: number[][]) => void; setIsLoa
         setHasError(true)
         setRawData([])
       }
-      setIsLoading(false);
+      const newTimerId = await delay(500);
+      setTimeOuts((prev) => [...prev, newTimerId]);
     };
   };
+
+  React.useEffect(() => {
+    return () => timeOuts.forEach(t => clearTimeout(t))
+  }, [timeOuts])
   return (
     <Col xs="12">
       <FormGroup>
